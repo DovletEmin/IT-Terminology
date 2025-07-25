@@ -44,7 +44,7 @@ def get_db():
 async def read_terms(
     category: Annotated[list[str] | None, Query()] = None,
     skip: int = 0,
-    limit: int = 30,
+    limit: int = 1870,
     db: Session = Depends(get_db)
 ):
     terms = await get_terms_async(db, category, skip, limit)
@@ -54,7 +54,7 @@ async def read_terms(
     ]
 
 
-async def get_terms_async(db: Session, category: list[str] | None, skip: int = 0, limit: int = 30):
+async def get_terms_async(db: Session, category: list[str] | None, skip: int = 0, limit: int = 1870):
     return await asyncio.to_thread(get_terms, db, category, skip, limit)
 
 @app.get("/categories", response_model=list[str])
